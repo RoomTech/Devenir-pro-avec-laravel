@@ -17,7 +17,7 @@ vous pouvez le constater dans ce projet même.
 NB: Il faut noter que les factories disposes d'un package qui permet de generer des données fictives (Nom, prenoms, boolean etc...). - **faker** https://github.com/fzaninotto/Faker
 
 
-### Observez le ficher RoleFactory.php
+### Observez le fichier RoleFactory.php
 
 Voici le contenu de notre factory qui va nous permettre de generer des rôles pour notre application
 
