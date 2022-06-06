@@ -17,7 +17,24 @@ use App\Http\Controllers\EmploiController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::view('/contact', 'pages.contact')->name('contact');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('emploi/create/demande/{id}', [EmploiController::class, 'create'])->name('emploi.create.demande');
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 

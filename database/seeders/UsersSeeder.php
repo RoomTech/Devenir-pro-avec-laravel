@@ -17,6 +17,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+
       User::create([
         'nom' => 'Admin',
         'prenoms' => 'Bara Gnini',
@@ -26,8 +27,9 @@ class UsersSeeder extends Seeder
       ]);
   
       //Creation de 10 offres d'emoi pour chaque DRH crée
+      //Role::DRH = 2 (L'id du role DRH)
+      
       User::factory(10)->sequence(['role_id' => Role::DRH])->create();
-
       $usersDRH = User::isDrh()->get(); // Recuperation de tous les DRH uniquement
       
       // Pour chaque DRH on crée 10 offres d'emploi

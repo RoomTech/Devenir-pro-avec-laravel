@@ -67,5 +67,10 @@ class User extends Authenticatable
     return $query->where('role_id', Role::DRH);
   }
 
+  public function scopeCandidate($query)
+  {
+    return $query->where('role_id', Role::CANDIDATE);
+  }
+
  
 }
