@@ -21,8 +21,6 @@ class DatabaseSeeder extends Seeder
   public function run()
   {
 
-
-
     $this->call([
       ContratsSeeder::class,
       RolesSeeder::class,
@@ -35,7 +33,6 @@ class DatabaseSeeder extends Seeder
       'role_id' => Role::SUPER_ADMIN,
       'password' => Hash::make('pass2022'),
     ]);
-
 
     if (env('APP_ENV') == 'production') {
       $this->call(UsersSeeder::class);
