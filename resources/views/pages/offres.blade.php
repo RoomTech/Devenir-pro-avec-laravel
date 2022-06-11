@@ -11,6 +11,7 @@
   </div>
 </header>
 <section class="container mt-16">
+  @include('partials.flasher')
   <div class='bg-gray-100 text-gray-700  font-sans quicksand'>
       <h1 class="text-center font-bold p-10 text-3xl">Offres</h1>
       <div class="p-4">
