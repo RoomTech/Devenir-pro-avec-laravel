@@ -11,7 +11,7 @@
         </div>
     </header>
     <section class="mx-auto px-24 mt-10">
-        <p class="text-center text-2xl text-blue-700">Incsrire-toi</p>
+        <p class="text-center text-xl text-blue-700">Veuillez remplit le formulaire afin de créer un compte, pour postuler a une offre d'emploi</p>
         @include('partials.flasher')
         <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

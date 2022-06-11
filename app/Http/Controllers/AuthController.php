@@ -66,4 +66,13 @@ class AuthController extends Controller
     session()->flash('error', 'E-mail ou mot de passe incorrect !');
     return back();
   }
+
+
+  public function logout(Request $request)
+  {
+    Auth::logout();
+    $request->session()->invalidate();
+    session()->flash('success', 'Vous etes deconnecté!');
+    return redirect()->route('login');
+  }
 }
