@@ -6,39 +6,28 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\actions\users\CreateUser;
+use App\Http\Requests\UserRequest;
+use App\Services\UploadFileService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\SendWelcomeNotification;
 
 class AuthController extends Controller
 {
-  //creons la function register
+  //creons la function register equest $request ,
 
-  public function register(Request $request)
+  public function register(UserRequest $request, CreateUser $action)
   {
-    $request->validate([
-      'nom' => 'required|string|max:255',
-      'prenoms' => 'required|string|max:255',
-      'email' => ['required', 'email', Rule::unique('users', 'email')],
-      'cv' => 'required|file',
-      'lien_photo' => 'required|file',
-    ]);
     //Traitements des fichiers
-    $cv = $request->cv->store('cv');
-    $lien_photo = $request->lien_photo->store('photos');
-    //Envoie aleatoire des passwords
+    $files = $this->uploadFiles($request);
+  
     $passwordGenerate = Str::random(8);
-    //Enregistrements des informations
-    $user = User::create([
-      'nom' => $request->nom,
-      'cv' => $cv,
-      'prenoms' => $request->prenoms,
-      'email' => $request->email,
-      'lien_photo' => $lien_photo,
-      'password' => Hash::make($passwordGenerate),
-      'role_id' => \App\Models\Role::CANDIDATE
-    ]);
-    //Envoie des notifications aaux users est une instancte de la classe
+    $files['passwordGenerate'] = $passwordGenerate;
+  
+    //dd($data);
+    $user = $action->create(array_merge($request->toArray(), $files));
+   
     $user->notify(new SendWelcomeNotification($passwordGenerate));
     //Renvoir du message 
     session()->flash('success', 'Nous avons envoye vos informations par email');
@@ -72,7 +61,15 @@ class AuthController extends Controller
   {
     Auth::logout();
     $request->session()->invalidate();
-    session()->flash('success', 'Vous etes deconnecté!');
+    toast('Vous etes deconnecté!','info');
     return redirect()->route('login');
+  }
+
+  private function uploadFiles(UserRequest $request)
+  {
+    $fileService = new UploadFileService();
+    $cv = $fileService->upload($request->cv, 'cv');
+    $lien_photo = $fileService->upload($request->lien_photo, 'photo');
+    return compact('cv', 'lien_photo');
   }
 }

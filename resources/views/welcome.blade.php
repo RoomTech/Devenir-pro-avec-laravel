@@ -1,24 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <header class='pt-10 pb-10 bg-gradient-to-l from-indigo-900 to-indigo-500'>
-        <div class='container mx-auto'>
-            @include('partials.navbar')
-            <div class='mt-28  items-center'>
-                <div class='text-center mx-auto'>
-                    <h2 class='text-6xl text-white font-bold mb-2'>Bienvenue sur Baragnini</h2>
-                    <p class='text-sm md:text-base text-white'>
-                        Votre plateforme d'offres d'emploi...
-                    </p>
-                    <div class='mt-10'>
-                        <a href='#'
-                            class='bg-transparent hover:bg-green-900 text-white font-bold hover:text-white py-4 px-6 border border-green-900 hover:border-transparent rounded'>
-                            Voir les offres
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+ <x-header title='Bienvenue sur Baragnini' description="Votre plateforme d'offres d'emploi..." action='true' />
     <section class="container mt-16">
         <div class='bg-gray-100 text-gray-700  font-sans quicksand'>
             <h1 class="text-center font-bold p-10 text-3xl">Recentes offres</h1>
@@ -50,4 +32,5 @@
             </div>
         </div>
     </section>
+
 @stop

@@ -1,15 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<header class='pt-10 pb-10 bg-gradient-to-l from-indigo-900 to-indigo-500'>
-  <div class='container mx-auto'>
-      @include('partials.navbar')
-      <div class='mt-28  items-center'>
-          <div class='text-center mx-auto'>
-              <h2 class='text-6xl text-white font-bold mb-2'>Toutes les offres</h2>
-          </div>
-      </div>
-  </div>
-</header>
+<x-header title='Nos offres' />
 <section class="container mt-16">
   @include('partials.flasher')
   <div class='bg-gray-100 text-gray-700  font-sans quicksand'>
